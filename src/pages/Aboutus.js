@@ -14,11 +14,11 @@ const Aboutus = () => {
       return [...oldItems, addTodo];
     });
     setAddTodo("");
+    
   };
 
   const deleteitem = (index) => {
     let rows = [...todo];
-    console.log(rows);
     rows.splice(index, 1);
     setTodo(rows);
   };
@@ -41,6 +41,7 @@ const Aboutus = () => {
                   <button
                     className="btn btn-success ms-2"
                     onClick={handleClick}
+                    disabled={!addTodo}
                   >
                     +
                   </button>
@@ -48,7 +49,7 @@ const Aboutus = () => {
                 <ol className="mt-5 ps-0">
                   {todo.map((item, index) => {
                     return (
-                      <li className="h4 w-50 card p-2">
+                      <li className="h4 w-50 card p-2"  key={index}>
                         <p className="ms-3">{item}</p>
                         <div>
                           <button
