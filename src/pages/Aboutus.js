@@ -2,6 +2,8 @@ import React from "react";
 import { useState } from "react";
 
 const Aboutus = () => {
+
+
   const [addTodo, setAddTodo] = useState("");
   const [todo, setTodo] = useState([]);
 
@@ -14,14 +16,29 @@ const Aboutus = () => {
       return [...oldItems, addTodo];
     });
     setAddTodo("");
-    
   };
 
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      handleClick()
+    }
+    }
+ 
   const deleteitem = (index) => {
     let rows = [...todo];
     rows.splice(index, 1);
     setTodo(rows);
+    console.log(index);
   };
+
+
+  const editItem = (value, index) => {
+    setAddTodo(value)
+    console.log(value);
+    console.log(index);
+  };
+
+
 
   return (
     <>
@@ -37,6 +54,7 @@ const Aboutus = () => {
                     value={addTodo}
                     type="text"
                     className="form-control w-25"
+                    onKeyDown={handleKeyDown}
                   />
                   <button
                     className="btn btn-success ms-2"
@@ -58,7 +76,7 @@ const Aboutus = () => {
                           >
                             Del
                           </button>
-                          <button className="btn btn-secondary ms-2">
+                          <button className="btn btn-secondary ms-2" onClick={()=>editItem(item, index)}>
                             Edit
                           </button>
                         </div>
